@@ -1,0 +1,23 @@
+name: Build EXE Tugas 2
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+      - name: Download source code
+        uses: actions/checkout@v4
+
+      - name: Compile C++
+        shell: cmd
+        run: g++ -std=c++11 -static -o tugas2_pak_alwan.exe main.cpp
+
+      - name: Upload EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: tugas2_pak_alwan
+          path: tugas2_pak_alwan.exe
